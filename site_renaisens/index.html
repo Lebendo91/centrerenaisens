@@ -1,0 +1,1281 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centre RenaîSens - Thérapies spécialisées</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* === VARIABLES CSS MODERNES === */
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --success-gradient: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            
+            --bleu-profond: #1e3a8a;
+            --bleu-clair: #3b82f6;
+            --vert-emeraude: #10b981;
+            --violet-royal: #8b5cf6;
+            --rose-doux: #ec4899;
+            --orange-sunset: #f59e0b;
+            
+            --blanc-pure: #ffffff;
+            --gris-clair: #f8fafc;
+            --gris-moyen: #64748b;
+            --noir-elegant: #0f172a;
+            
+            --shadow-light: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            --shadow-medium: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-large: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            
+            --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        /* === RESET ET BASE === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--gris-clair);
+            color: var(--noir-elegant);
+            line-height: 1.7;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        /* === ANIMATIONS KEYFRAMES === */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(60px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-100px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(100px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* === HEADER HERO MODERNE === */
+        .hero-section {
+            min-height: 100vh;
+            background: var(--primary-gradient);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx="50%" cy="50%"><stop offset="0%" stop-color="rgba(255,255,255,0.1)"/><stop offset="100%" stop-color="rgba(255,255,255,0)"/></radialGradient></defs><circle cx="50%" cy="50%" r="40%" fill="url(%23a)"/></svg>');
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .particle:nth-child(1) { width: 80px; height: 80px; left: 10%; top: 20%; animation-delay: 0s; }
+        .particle:nth-child(2) { width: 60px; height: 60px; left: 80%; top: 30%; animation-delay: 2s; }
+        .particle:nth-child(3) { width: 100px; height: 100px; left: 70%; top: 70%; animation-delay: 4s; }
+        .particle:nth-child(4) { width: 40px; height: 40px; left: 20%; top: 80%; animation-delay: 1s; }
+
+        .hero-content {
+            text-align: center;
+            z-index: 10;
+            max-width: 800px;
+            padding: 2rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 3rem;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        /* === NAVIGATION GLASSMORPHISM === */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            z-index: 1000;
+            transition: var(--transition-smooth);
+        }
+
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--noir-elegant);
+            text-decoration: none;
+            font-weight: 600;
+            position: relative;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: var(--transition-smooth);
+        }
+
+        .nav-links a:hover {
+            background: rgba(102, 126, 234, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .nav-links a.active {
+            background: var(--primary-gradient);
+            color: white;
+        }
+
+        /* === BOUTONS MODERNES === */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: var(--transition-bounce);
+            position: relative;
+            overflow: hidden;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: var(--primary-gradient);
+            color: white;
+            box-shadow: var(--shadow-medium);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-accent {
+            background: var(--accent-gradient);
+            color: white;
+            box-shadow: var(--shadow-large);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: var(--transition-smooth);
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        /* === SECTIONS LAYOUT === */
+        .section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.25rem;
+            color: var(--gris-moyen);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* === CARDS AVANCÉES === */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .card {
+            background: var(--blanc-pure);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-light);
+            transition: var(--transition-bounce);
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--primary-gradient);
+            transform: scaleX(0);
+            transition: var(--transition-smooth);
+        }
+
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            transition: var(--transition-smooth);
+        }
+
+        .card:hover .card-image {
+            transform: scale(1.1);
+        }
+
+        .card-content {
+            padding: 2rem;
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--noir-elegant);
+            margin-bottom: 1rem;
+        }
+
+        .card-description {
+            color: var(--gris-moyen);
+            line-height: 1.6;
+        }
+
+        /* === BOUTIQUE PRODUIT === */
+        .product-showcase {
+            background: var(--blanc-pure);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: var(--shadow-xl);
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--secondary-gradient);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            animation: pulse 2s infinite;
+            z-index: 10;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: var(--transition-smooth);
+        }
+
+        .product-showcase:hover .product-image {
+            transform: scale(1.05);
+        }
+
+        .product-info {
+            padding: 2.5rem;
+            text-align: center;
+        }
+
+        .product-title {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--noir-elegant);
+            margin-bottom: 1rem;
+        }
+
+        .product-description {
+            color: var(--gris-moyen);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .product-price {
+            font-size: 3rem;
+            font-weight: 900;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 2rem;
+        }
+
+        /* === FORMULAIRE CONTACT === */
+        .contact-form {
+            background: var(--blanc-pure);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow-large);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            color: var(--noir-elegant);
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: var(--transition-smooth);
+            background: var(--gris-clair);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--bleu-clair);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+            background: white;
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* === FOOTER MODERNE === */
+        .footer {
+            background: var(--noir-elegant);
+            color: white;
+            padding: 4rem 2rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: var(--primary-gradient);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition-bounce);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-link:nth-child(1) { background: #1877f2; }
+        .social-link:nth-child(2) { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
+        .social-link:nth-child(3) { background: #1da1f2; }
+
+        .social-link:hover {
+            transform: translateY(-5px) rotate(5deg);
+            box-shadow: var(--shadow-large);
+        }
+
+        /* === MENU MOBILE === */
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .hamburger {
+            width: 25px;
+            height: 3px;
+            background: var(--noir-elegant);
+            margin: 3px 0;
+            transition: var(--transition-smooth);
+        }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .section {
+                padding: 4rem 1rem;
+            }
+
+            .contact-form {
+                padding: 2rem;
+            }
+        }
+
+        /* === LOADING ÉTATS === */
+        .loading {
+            position: relative;
+            color: transparent;
+        }
+
+        .loading::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+            border-radius: 4px;
+        }
+
+        /* === ÉTATS HOVER AVANCÉS === */
+        .hover-lift {
+            transition: var(--transition-bounce);
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-8px);
+        }
+
+        .hover-glow {
+            transition: var(--transition-smooth);
+        }
+
+        .hover-glow:hover {
+            box-shadow: 0 0 30px rgba(102, 126, 234, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="logo">RenaîSens</div>
+            <ul class="nav-links">
+                <li><a href="#hero" class="active">Accueil</a></li>
+                <li><a href="#therapies">Nos Thérapies</a></li>
+                <li><a href="#apropos">À Propos</a></li>
+                <li><a href="#boutique">Boutique</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="mobile-menu-toggle">
+                <div class="hamburger"></div>
+                <div class="hamburger"></div>
+                <div class="hamburger"></div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section">
+        <div class="hero-background"></div>
+        <div class="hero-particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title">Centre RenaîSens</h1>
+            <p class="hero-subtitle">Un havre de paix pour l'épanouissement des enfants autistes</p>
+            <div class="hero-cta">
+                <a href="#therapies" class="btn btn-primary">
+                    <i class="fas fa-heart"></i>
+                    Découvrir nos thérapies
+                </a>
+                <a href="#contact" class="btn btn-secondary">
+                    <i class="fas fa-phone"></i>
+                    Nous contacter
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Thérapies -->
+    <section id="therapies" class="section">
+        <div class="section-header">
+            <h2 class="section-title">Nos Thérapies Spécialisées</h2>
+            <p class="section-subtitle">Des approches innovantes et personnalisées pour accompagner chaque enfant dans son développement</p>
+        </div>
+        
+        <div class="cards-grid">
+            <div class="card hover-lift">
+                <img src="images/image1.jpg" alt="Intégration sensorielle" class="card-image">
+
+                <div class="card-content">
+                    <div class="card-icon" style="background: var(--primary-gradient);">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="card-title">Intégration Neuro-sensorielle</h3>
+                    <p class="card-description">Animée par Miloud, notre thérapeute spécialisé. Cette approche aide à développer la capacité de traiter et d'intégrer les informations sensorielles.</p>
+                </div>
+            </div>
+
+            <div class="card hover-lift">
+                <img src="images/image2.jpg" alt="Snoezelen" class="card-image">
+                <div class="card-content">
+                    <div class="card-icon" style="background: var(--accent-gradient);">
+                        <i class="fas fa-spa"></i>
+                    </div>
+                    <h3 class="card-title">Thérapie Snoezelen</h3>
+                    <p class="card-description">Un espace multisensoriel apaisant conçu pour stimuler les sens de manière contrôlée et relaxante.</p>
+                </div>
+            </div>
+
+            <div class="card hover-lift">
+                <div class="card-content">
+                    <div class="card-icon" style="background: var(--secondary-gradient);">
+                        <i class="fas fa-puzzle-piece"></i>
+                    </div>
+                    <h3 class="card-title">Thérapie Cognitivo-exécutive</h3>
+                    <p class="card-description">Renforcement des fonctions exécutives et cognitives pour améliorer l'autonomie et les capacités d'apprentissage.</p>
+                </div>
+            </div>
+
+            <div class="card hover-lift">
+                <div class="card-content">
+                    <div class="card-icon" style="background: var(--success-gradient);">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3 class="card-title">Thérapie Psycho-éducative</h3>
+                    <p class="card-description">Animée par Sandrine, cette approche fournit des outils concrets pour améliorer le quotidien des enfants et de leurs familles.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section À Propos -->
+    <section id="apropos" class="section">
+        <div class="section-header">
+            <h2 class="section-title">À Propos de Notre Centre</h2>
+            <p class="section-subtitle">Une équipe passionnée au service des enfants autistes et de leurs familles</p>
+        </div>
+        
+        <div class="cards-grid">
+            <div class="card hover-glow">
+                <div class="card-content">
+                    <div class="card-icon" style="background: var(--primary-gradient);">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="card-title">Équipe Pluridisciplinaire</h3>
+                    <p class="card-description">Nos thérapeutes spécialisés travaillent en synergie pour offrir un accompagnement complet et personnalisé à chaque enfant.</p>
+                </div>
+            </div>
+
+            <div class="card hover-glow">
+                <div class="card-content">
+                    <div class="card-icon" style="background: var(--accent-gradient);">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3 class="card-title">Environnement Adapté</h3>
+                    <p class="card-description">Nos espaces sont spécialement conçus pour créer un environnement sécurisant et stimulant, favorable aux apprentissages.</p>
+                </div>
+            </div>
+
+            <div class="card hover-glow">
+                <div class="card-content">
+                    <div class="card-icon" style="background: var(--secondary-gradient);">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3 class="card-title">Accompagnement Familial</h3>
+                    <p class="card-description">Nous impliquons les familles dans le processus thérapeutique pour assurer une continuité dans les progrès de l'enfant.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Boutique -->
+    <section id="boutique" class="section">
+        <div class="section-header">
+            <h2 class="section-title">Notre Boutique</h2>
+            <p class="section-subtitle">Découvrez notre outil d'évaluation spécialisé pour mieux comprendre les besoins de votre enfant</p>
+        </div>
+        
+        <div class="product-showcase hover-lift">
+            <div class="product-badge">Nouveau</div>
+            <img src="images/image3.jpg" alt="Questionnaire d'évaluation" class="product-image">
+            <div class="product-info">
+                <h3 class="product-title">Questionnaire d'Évaluation Spécialisé</h3>
+                <p class="product-description">Un outil complet de 100 questions développé par nos experts pour une analyse approfondie des besoins de votre enfant.</p>
+                <div class="product-price">70 €</div>
+                <button class="btn btn-accent" id="buyButton">
+                    <i class="fas fa-shopping-cart"></i>
+                    Acheter maintenant
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Contact -->
+    <section id="contact" class="section">
+        <div class="section-header">
+            <h2 class="section-title">Contactez-nous</h2>
+            <p class="section-subtitle">N'hésitez pas à nous contacter pour plus d'informations ou pour prendre rendez-vous</p>
+        </div>
+        
+        <div class="cards-grid">
+            <div class="card hover-glow">
+                <div class="card-content">
+                    <div class="card-icon" style="background: var(--primary-gradient);">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3 class="card-title">Notre Adresse</h3>
+                    <p class="card-description">2 rue du Limousin<br>Maison Médicale La Moinerie<br>91220 Brétigny-sur-Orge</p>
+                </div>
+            </div>
+
+            <div class="card hover-glow">
+                <div class="card-content">
+                    <div class="card-icon" style="background: var(--accent-gradient);">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <h3 class="card-title">Téléphone</h3>
+                    <p class="card-description">06.51.25.13.26<br><br>Horaires d'ouverture :<br>Lundi - Vendredi : 9h - 17h</p>
+                </div>
+            </div>
+
+            <div class="card hover-glow">
+                <div class="card-content">
+                    <div class="card-icon" style="background: var(--secondary-gradient);">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3 class="card-title">Email</h3>
+                    <p class="card-description">contact@renaisens.fr<br><br>Nous vous répondons<br>sous 24h maximum</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-form">
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="name" class="form-label">
+                        <i class="fas fa-user"></i> Nom complet
+                    </label>
+                    <input type="text" id="name" class="form-input" required placeholder="Votre nom et prénom">
+                </div>
+
+                <div class="form-group">
+                    <label for="email" class="form-label">
+                        <i class="fas fa-envelope"></i> Adresse email
+                    </label>
+                    <input type="email" id="email" class="form-input" required placeholder="votre.email@exemple.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="phone" class="form-label">
+                        <i class="fas fa-phone"></i> Téléphone (optionnel)
+                    </label>
+                    <input type="tel" id="phone" class="form-input" placeholder="06 XX XX XX XX">
+                </div>
+
+                <div class="form-group">
+                    <label for="subject" class="form-label">
+                        <i class="fas fa-tag"></i> Sujet
+                    </label>
+                    <select id="subject" class="form-input" required>
+                        <option value="">Choisissez un sujet</option>
+                        <option value="information">Demande d'information</option>
+                        <option value="rdv">Prise de rendez-vous</option>
+                        <option value="urgence">Urgence</option>
+                        <option value="autre">Autre</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="message" class="form-label">
+                        <i class="fas fa-comment"></i> Votre message
+                    </label>
+                    <textarea id="message" class="form-input form-textarea" required placeholder="Décrivez votre demande en détail..."></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%;">
+                    <i class="fas fa-paper-plane"></i>
+                    Envoyer le message
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">RenaîSens</div>
+            <p style="font-size: 1.1rem; margin-bottom: 2rem; opacity: 0.9;">
+                Accompagnement spécialisé pour enfants autistes
+            </p>
+            
+            <div class="social-links">
+                <a href="https://www.facebook.com/people/Centre-Rena%C3%8ESens/100076153506122/" target="_blank" class="social-link" title="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" class="social-link" title="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="social-link" title="Twitter">
+                    <i class="fab fa-twitter"></i>
+                </a>
+            </div>
+            
+            <div style="border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 2rem; margin-top: 2rem;">
+                <p style="opacity: 0.7;">© 2023 Centre RenaîSens - Tous droits réservés</p>
+                <p style="opacity: 0.5; font-size: 0.9rem; margin-top: 0.5rem;">
+                    Développé avec ❤️ pour l'épanouissement des enfants
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bouton retour en haut -->
+    <button id="scrollTopBtn" class="btn btn-primary" style="position: fixed; bottom: 2rem; right: 2rem; width: 60px; height: 60px; border-radius: 50%; display: none; z-index: 1000; box-shadow: var(--shadow-xl);">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- JavaScript Enhanced -->
+    <script>
+        // === VARIABLES GLOBALES ===
+        const navbar = document.getElementById('navbar');
+        const sections = document.querySelectorAll('.section');
+        const navLinks = document.querySelectorAll('.nav-links a');
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+        const buyButton = document.getElementById('buyButton');
+        const contactForm = document.getElementById('contactForm');
+
+        // === INTERSECTION OBSERVER POUR ANIMATIONS ===
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    
+                    // Animation séquentielle des cartes
+                    const cards = entry.target.querySelectorAll('.card');
+                    cards.forEach((card, index) => {
+                        setTimeout(() => {
+                            card.style.animation = `fadeInUp 0.6s ease-out ${index * 0.1}s both`;
+                        }, 100);
+                    });
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => {
+            sectionObserver.observe(section);
+        });
+
+        // === NAVBAR SCROLL EFFECTS ===
+        let lastScrollY = window.scrollY;
+        
+        window.addEventListener('scroll', () => {
+            const currentScrollY = window.scrollY;
+            
+            // Effet glassmorphism sur scroll
+            if (currentScrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+            
+            // Navigation active basée sur la section visible
+            updateActiveNavLink();
+            
+            // Bouton retour en haut
+            if (currentScrollY > 500) {
+                scrollTopBtn.style.display = 'flex';
+                scrollTopBtn.style.animation = 'scaleIn 0.3s ease-out';
+            } else {
+                scrollTopBtn.style.display = 'none';
+            }
+            
+            lastScrollY = currentScrollY;
+        });
+
+        // === NAVIGATION ACTIVE ===
+        function updateActiveNavLink() {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionHeight = section.clientHeight;
+                
+                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            // Cas spécial pour hero
+            if (window.scrollY < 100) {
+                current = 'hero';
+            }
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        // === SMOOTH SCROLL POUR NAVIGATION ===
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                
+                if (targetSection) {
+                    const offsetTop = targetSection.offsetTop - 80;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // === BOUTON RETOUR EN HAUT ===
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // === BOUTON D'ACHAT AVEC ANIMATION ===
+        buyButton.addEventListener('click', function() {
+            // Animation de loading
+            const originalHTML = this.innerHTML;
+            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Traitement...';
+            this.disabled = true;
+            
+            // Simulation de traitement
+            setTimeout(() => {
+                this.innerHTML = '<i class="fas fa-check"></i> Redirection...';
+                
+                setTimeout(() => {
+                    // Remplacer par votre vraie URL de paiement
+                    window.open("https://www.paypal.com/checkoutnow?token=XXXX", "_blank");
+                    
+                    // Restaurer le bouton
+                    setTimeout(() => {
+                        this.innerHTML = originalHTML;
+                        this.disabled = false;
+                    }, 2000);
+                }, 1000);
+            }, 1500);
+        });
+
+        // === FORMULAIRE DE CONTACT AMÉLIORÉ ===
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Validation améliorée
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData.entries());
+            
+            // Animation de soumission
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalHTML = submitBtn.innerHTML;
+            
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi en cours...';
+            submitBtn.disabled = true;
+            
+            // Simulation d'envoi
+            setTimeout(() => {
+                // Affichage du succès
+                submitBtn.innerHTML = '<i class="fas fa-check"></i> Message envoyé !';
+                submitBtn.style.background = 'var(--success-gradient)';
+                
+                // Notification toast
+                showToast('Merci ! Votre message a été envoyé avec succès. Nous vous contacterons bientôt.', 'success');
+                
+                // Reset du formulaire
+                this.reset();
+                
+                // Restaurer le bouton
+                setTimeout(() => {
+                    submitBtn.innerHTML = originalHTML;
+                    submitBtn.style.background = '';
+                    submitBtn.disabled = false;
+                }, 3000);
+            }, 2000);
+        });
+
+        // === FONCTION TOAST NOTIFICATION ===
+        function showToast(message, type = 'info') {
+            const toast = document.createElement('div');
+            toast.style.cssText = `
+                position: fixed;
+                top: 2rem;
+                right: 2rem;
+                background: ${type === 'success' ? 'var(--success-gradient)' : 'var(--primary-gradient)'};
+                color: white;
+                padding: 1rem 2rem;
+                border-radius: 12px;
+                box-shadow: var(--shadow-xl);
+                z-index: 10000;
+                animation: slideInRight 0.5s ease-out;
+                max-width: 400px;
+                font-weight: 600;
+            `;
+            
+            toast.innerHTML = `
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                    <i class="fas fa-${type === 'success' ? 'check-circle' : 'info-circle'}"></i>
+                    ${message}
+                </div>
+            `;
+            
+            document.body.appendChild(toast);
+            
+            // Auto-suppression
+            setTimeout(() => {
+                toast.style.animation = 'slideInRight 0.5s ease-out reverse';
+                setTimeout(() => {
+                    document.body.removeChild(toast);
+                }, 500);
+            }, 5000);
+        }
+
+        // === PARALLAX EFFECTS ===
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.hero-background, .hero-particles');
+            
+            parallaxElements.forEach(element => {
+                const speed = 0.5;
+                element.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+
+       // === KEYBOARD NAVIGATION ===
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                // Fermer les modals ou éléments ouverts
+                document.querySelectorAll('.modal, .dropdown').forEach(el => {
+                    el.style.display = 'none';
+                });
+            }
+        });
+
+        // === PRÉCHARGEMENT OPTIMISÉ ===
+        window.addEventListener('load', () => {
+            // Preload des images critiques
+            const criticalImages = [
+                'https://images.unsplash.com/photo-1579684385127-1ef15d508118',
+                'https://images.unsplash.com/photo-1604881991720-f91add317c3c',
+                'https://images.unsplash.com/photo-1589998059171-988d887df646'
+            ];
+            
+            criticalImages.forEach(src => {
+                const img = new Image();
+                img.src = src + '?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80';
+            });
+            
+            // Animation d'entrée pour les éléments visibles
+            document.body.style.opacity = '1';
+        });
+
+        // === RESPONSIVE MENU MOBILE ===
+        const mobileToggle = document.querySelector('.mobile-menu-toggle');
+        const navLinks_mobile = document.querySelector('.nav-links');
+        
+        if (mobileToggle) {
+            mobileToggle.addEventListener('click', () => {
+                navLinks_mobile.classList.toggle('active');
+                mobileToggle.classList.toggle('active');
+            });
+        }
+
+        // === ANALYTICS ET PERFORMANCE ===
+        // Mesure du temps de chargement
+        window.addEventListener('load', () => {
+            const loadTime = performance.now();
+            console.log(`Page chargée en ${loadTime.toFixed(2)}ms`);
+        });
+
+        // === INITIALISATION ===
+        document.addEventListener('DOMContentLoaded', () => {
+            // Animation d'entrée pour le hero
+            document.querySelector('.hero-content').style.animation = 'fadeInUp 1s ease-out';
+            
+            // Initialisation des tooltips
+            initializeTooltips();
+            
+            // Configuration des event listeners
+            setupEventListeners();
+        });
+
+        function initializeTooltips() {
+            const tooltipElements = document.querySelectorAll('[title]');
+            tooltipElements.forEach(el => {
+                el.addEventListener('mouseenter', showTooltip);
+                el.addEventListener('mouseleave', hideTooltip);
+            });
+        }
+
+        function showTooltip(e) {
+            const title = e.target.getAttribute('title');
+            if (title) {
+                e.target.setAttribute('data-title', title);
+                e.target.removeAttribute('title');
+                
+                const tooltip = document.createElement('div');
+                tooltip.className = 'custom-tooltip';
+                tooltip.textContent = title;
+                tooltip.style.cssText = `
+                    position: absolute;
+                    background: var(--noir-elegant);
+                    color: white;
+                    padding: 0.5rem 1rem;
+                    border-radius: 8px;
+                    font-size: 0.9rem;
+                    z-index: 10000;
+                    pointer-events: none;
+                    white-space: nowrap;
+                    animation: fadeInUp 0.2s ease-out;
+                `;
+                
+                document.body.appendChild(tooltip);
+                
+                const rect = e.target.getBoundingClientRect();
+                tooltip.style.left = rect.left + (rect.width / 2) - (tooltip.offsetWidth / 2) + 'px';
+                tooltip.style.top = rect.top - tooltip.offsetHeight - 8 + 'px';
+            }
+        }
+
+        function hideTooltip(e) {
+            const title = e.target.getAttribute('data-title');
+            if (title) {
+                e.target.setAttribute('title', title);
+                e.target.removeAttribute('data-title');
+                
+                const tooltip = document.querySelector('.custom-tooltip');
+                if (tooltip) {
+                    tooltip.remove();
+                }
+            }
+        }
+
+        function setupEventListeners() {
+            // Gestion des erreurs d'images
+            document.querySelectorAll('img').forEach(img => {
+                img.addEventListener('error', function() {
+                    this.style.backgroundColor = '#f3f4f6';
+                    this.innerHTML = '<i class="fas fa-image" style="color: #9ca3af; font-size: 2rem;"></i>';
+                });
+            });
+        }
+    </script>
+</body>
+</html>
